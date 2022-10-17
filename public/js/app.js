@@ -14734,6 +14734,21 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./resources/js/app.js":
+/*!*****************************!*\
+  !*** ./resources/js/app.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+/* harmony import */ var _coreui_coreui_pro__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @coreui/coreui-pro */ "./node_modules/@coreui/coreui-pro/dist/js/coreui.esm.js");
+
+
+
+/***/ }),
+
 /***/ "./resources/js/bootstrap.js":
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
@@ -34065,6 +34080,16 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
 
 /***/ }),
 
+/***/ "./resources/sass/app.scss":
+/*!*********************************!*\
+  !*** ./resources/sass/app.scss ***!
+  \*********************************/
+/***/ (() => {
+
+throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nSassError: Can't find stylesheet to import.\n  ╷\n1 │ @import \"~@coreui/coreui/scss/coreui\";\n  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  ╵\n  resources/sass/app.scss 1:9  root stylesheet\n    at processResult (/home/kenneth/WebApplications/TIFA/JobsKona/node_modules/webpack/lib/NormalModule.js:758:19)\n    at /home/kenneth/WebApplications/TIFA/JobsKona/node_modules/webpack/lib/NormalModule.js:860:5\n    at /home/kenneth/WebApplications/TIFA/JobsKona/node_modules/loader-runner/lib/LoaderRunner.js:400:11\n    at /home/kenneth/WebApplications/TIFA/JobsKona/node_modules/loader-runner/lib/LoaderRunner.js:252:18\n    at context.callback (/home/kenneth/WebApplications/TIFA/JobsKona/node_modules/loader-runner/lib/LoaderRunner.js:124:13)\n    at Object.loader (/home/kenneth/WebApplications/TIFA/JobsKona/node_modules/sass-loader/dist/index.js:69:5)");
+
+/***/ }),
+
 /***/ "./node_modules/process/browser.js":
 /*!*****************************************!*\
   !*** ./node_modules/process/browser.js ***!
@@ -34351,19 +34376,12 @@ process.umask = function() { return 0; };
 /******/ 	})();
 /******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
-(() => {
-"use strict";
-/*!*****************************!*\
-  !*** ./resources/js/app.js ***!
-  \*****************************/
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-/* harmony import */ var _coreui_coreui_pro__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @coreui/coreui-pro */ "./node_modules/@coreui/coreui-pro/dist/js/coreui.esm.js");
-
-
-})();
-
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	__webpack_require__("./resources/js/app.js");
+/******/ 	// This entry module doesn't tell about it's top-level declarations so it can't be inlined
+/******/ 	var __webpack_exports__ = __webpack_require__("./resources/sass/app.scss");
+/******/ 	
 /******/ })()
 ;
