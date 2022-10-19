@@ -53,7 +53,7 @@
                             <a href="https://unsplash.com/">Unsplash</a>
                             !
                         </p>
-                        <a class="btn btn-dark btn-xl" href="{{ route('register') }}">Sign Up Today</a>
+                        <a class="btn btn-dark btn-xl" href="{{ route('login') }}">Sign Up Today</a>
                     </div>
                 </div>
             </div>
@@ -165,7 +165,7 @@
                 <h2 class="mb-4">
                     What are you waiting for ?
                 </h2>
-                <a class="btn btn-xl btn-light me-4" href="{{ route('register') }}">Register!</a>
+                <a class="btn btn-xl btn-light me-4" href="{{ route('login') }}">Register!</a>
                 <a class="btn btn-xl btn-dark" href="{{ route('login') }}">Login</a>
             </div>
         </section>

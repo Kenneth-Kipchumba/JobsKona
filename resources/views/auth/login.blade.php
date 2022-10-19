@@ -13,12 +13,11 @@
               <div class="card-body">
                 <h1>Login</h1>
                 <p class="text-medium-emphasis">Sign In to your account</p>
-                
                 <div class="input-group mb-4">
                   <span class="input-group-text">
                     <i class="fas fa-envelope"></i>
                   </span>
-                  <input class="form-control @error('email') is-invalid @enderror" type="email" name="email" placeholder="Your Email">
+                  <input class="form-control @error('email') is-invalid @enderror" type="email" name="email" placeholder="Your Email" value="{{ old('email') }}">
                   @error('email')
                     <div class="invalid-feedback">
                       {{ $message }}
