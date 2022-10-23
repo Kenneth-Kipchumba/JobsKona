@@ -15,7 +15,11 @@ class ListingController extends Controller
      */
     public function index()
     {
-        //
+        $data['listings'] = Listing::latest()
+                                    ->filter(request(['tag']))
+                                    ->get();
+
+        return view('backend.listings.index', $data);
     }
 
     /**
@@ -47,7 +51,9 @@ class ListingController extends Controller
      */
     public function show(Listing $listing)
     {
-        //
+        $data['listing'] = $listing;
+
+        return view('backend.listings.show', $data);
     }
 
     /**

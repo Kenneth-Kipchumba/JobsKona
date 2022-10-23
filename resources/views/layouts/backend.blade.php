@@ -14,20 +14,12 @@
     <title>{{ config('app.name') }}</title>
   </head>
   <body>
-
     @include('backend.partials.header')
-
     @include('backend.partials.sidebar')
-    
-    
 
-    
-
-
-
+    @yield('content')
 
     @include('backend.partials.footer')
-
     <!-- CoreUI PRO for Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@4.3.2/dist/js/coreui.bundle.min.js" integrity="sha384-AekAC2S7WX3JY6Z9cKOFyCsxgzI1Dq3i5zx2j7WhH3DdYA7/qHSzs4j90SCj9DJV" crossorigin="anonymous"></script>
   </body>

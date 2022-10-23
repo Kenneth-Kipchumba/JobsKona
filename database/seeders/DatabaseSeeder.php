@@ -23,6 +23,6 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        Listing::factory(1)->create();
+        Listing::factory(5)->create();
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ListingController;
 use App\Http\Controllers\Users\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,8 +20,11 @@ Route::get('/', function () {
 });
 
 Route::get('home', function () {
-    return view('backend/jobs/index');
+    return view('frontend/home');
 });
 
 /* User Routes */
 Route::get('users', [UserController::class, 'index']);
+
+/* Listing Routes*/
+Route::resource('listings', ListingController::class);

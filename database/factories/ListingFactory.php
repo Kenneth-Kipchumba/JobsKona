@@ -20,7 +20,7 @@ class ListingFactory extends Factory
             'company_id' => fake()->numerify(),
             'user_id' => fake()->numerify(),
             'title' => 'Call Center Agent',
-            'tags'  => 'Call Center, QC, Supervisor',
+            'tags'  => 'Call Center,QC,Supervisor',
             'description' => 'CATI - Computer Aided Telphonic Interviews'
         ];
     }
