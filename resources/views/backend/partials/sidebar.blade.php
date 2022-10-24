@@ -1,73 +1,84 @@
-<nav class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-  <div class="sidebar sidebar-show" id="sidebar">
-    <ul class="sidebar-nav">
-      <li class="nav-title">Nav Title</li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fa-solid fa-chart-line"></i>
-          Dashboard
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fa-solid fa-chart-line"></i>
-          Jobs
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fa-solid fa-chart-line"></i>
-          Item
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fa-solid fa-chart-line"></i>
-          Item
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fa-solid fa-chart-line"></i>
-          Item
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fa-solid fa-chart-line"></i>
-          Item
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fa-solid fa-chart-line"></i>
-          Item
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="nav-icon cil-speedometer"></i> With badge
-          <span class="badge bg-primary">NEW</span>
-        </a>
-      </li>
-      <li class="nav-item nav-group">
-        <a class="nav-link nav-group-toggle" href="#">
-          <i class="nav-icon cil-puzzle"></i> Nav dropdown
-        </a>
-        <ul class="nav-group-items">
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="nav-icon cil-puzzle"></i> Nav dropdown item
+<div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
+    <div class="sidebar-brand d-none d-md-flex">
+        <svg class="sidebar-brand-full" width="118" height="46" alt="{{ config('app.name') }} Logo">
+        <use xlink:href="assets/brand/coreui.svg#full"></use>
+        </svg>
+        <svg class="sidebar-brand-narrow" width="46" height="46" alt="{{ config('app.name') }} Logo">
+        <use xlink:href="assets/brand/coreui.svg#signet"></use>
+        </svg>
+    </div>
+    <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('listings') }}">
+                <div class="nav-icon">
+                    <i class="fa-solid fa-desktop"></i>
+                </div>
+                Job Listings
+                <span class="badge badge-sm bg-info ms-auto">NEW</span>
             </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="nav-icon cil-puzzle"></i> Nav dropdown item
+        </li>
+        
+        
+        <li class="nav-title">Categories</li>
+        <li class="nav-group">
+            <a class="nav-link nav-group-toggle" href="#">
+                <div class="nav-icon">
+                    <i class="fa-solid fa-book"></i>
+                </div> Main Category
             </a>
-          </li>
-        </ul>
-      </li>
+            <ul class="nav-group-items">
+                <li class="nav-item">
+                    <a class="nav-link" href="base/accordion.html">
+                        <span class="nav-icon"></span> Sub Category
+                    </a>
+                </li>
+               <li class="nav-item">
+                    <a class="nav-link" href="base/accordion.html">
+                        <span class="nav-icon"></span> Sub Category
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="base/accordion.html">
+                        <span class="nav-icon"></span> Sub Category
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="nav-divider"></li>
+        <li class="nav-title">Others</li>
+        <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+        <svg class="nav-icon">
+        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
+        </svg> Main Category</a>
+            <ul class="nav-group-items">
+                <li class="nav-item">
+                    <a class="nav-link" href="base/accordion.html">
+                        <span class="nav-icon"></span> Sub Category
+                    </a>
+                </li>
+               <li class="nav-item">
+                    <a class="nav-link" href="base/accordion.html">
+                        <span class="nav-icon"></span> Sub Category
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="base/accordion.html">
+                        <span class="nav-icon"></span> Sub Category
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="nav-item mt-auto">
+            <a class="nav-link" href="https://coreui.io/docs/templates/installation/" target="_blank">
+                <div class="nav-icon">
+                    <i class="fa-solid fa-book"></i>
+                </div> Docs
+            </a>
+        </li>
+        
+        </a></li>
     </ul>
-    <button class="sidebar-toggler" type="button"></button>
-  </div>
-</nav>
+    <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
+</div>

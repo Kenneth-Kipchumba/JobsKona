@@ -58,8 +58,10 @@
               <div class="card col-md-5 text-white bg-primary py-5">
                 <div class="card-body text-center">
                   <div>
-                    <h2>Sign up</h2>
-                    <p>Welcome To Jobs Kona. Sign up if you are new.</p>
+                    <h1 style="text-decoration: underline;">Sign up</h1>
+                    <hr class="mb-3">
+                    <p>New To <strong>{{ config('app.name') }}</strong> ?</p>
+                    <p>Sign up today.</p>
                     <a href="{{ route('register') }}" class="btn btn-lg btn-outline-light mt-3">Register Now!</a>
                   </div>
                 </div>

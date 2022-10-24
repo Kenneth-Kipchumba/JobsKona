@@ -17,7 +17,7 @@
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{{ asset('css/custom_landing_page.css') }}" rel="stylesheet" />
+        <link href="{{ asset('assets/css/custom_landing_page.css') }}" rel="stylesheet" />
     </head>
     <body id="page-top">
         <!-- Navigation-->
