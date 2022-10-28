@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Listing;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class ListingPolicy
 {
@@ -18,7 +19,7 @@ class ListingPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return false;
     }
 
     /**
@@ -41,7 +42,7 @@ class ListingPolicy
      */
     public function create(User $user)
     {
-        //
+        return false;
     }
 
     /**

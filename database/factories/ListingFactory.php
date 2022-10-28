@@ -21,7 +21,8 @@ class ListingFactory extends Factory
             'user_id' => fake()->numerify(),
             'title' => 'Call Center Agent',
             'tags'  => 'Call Center,QC,Supervisor',
-            'description' => 'CATI - Computer Aided Telphonic Interviews'
+            'description' => 'CATI - Computer Aided Telphonic Interviews',
+            'slots' => 10
         ];
     }
 }

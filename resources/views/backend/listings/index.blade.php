@@ -2,6 +2,8 @@
     
 @section('content')
 
+@include('backend/listings/sub_heading')
+
 <div class="row">
   @foreach($listings as $listing)
   <div class="col-sm-6 col-lg-4">
@@ -57,37 +59,6 @@
     </div>
   </div>
   @endforeach
-</div>
-
-<div class="row">
-    <div class="col-sm-6 col-lg-4">
-    <div class="card mb-4" style="--cui-card-cap-bg: #4875b4">
-    <div class="card-header position-relative d-flex justify-content-center align-items-center">
-    <svg class="icon icon-3xl text-white my-4">
-    <use xlink:href="vendors/@coreui/icons/svg/brand.svg#cib-linkedin"></use>
-    </svg>
-    <div class="chart-wrapper position-absolute top-0 start-0 w-100 h-100">
-    <canvas id="social-box-chart-3" height="90"></canvas>
-    </div>
-    </div>
-    <div class="card-body row text-center">
-    <div class="col">
-    <div class="fs-5 fw-semibold">500+</div>
-    <div class="text-uppercase text-medium-emphasis small">contacts</div>
-    </div>
-    <div class="vr"></div>
-    <div class="col">
-    <div class="fs-5 fw-semibold">292</div>
-    <div class="text-uppercase text-medium-emphasis small">feeds</div>
-    </div>
-    </div>
-    </div>
-    </div>
-  </div>
-
-
-<div class="container">
-  
 </div>
 
 @endsection

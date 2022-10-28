@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Gate;
+
 use App\Http\Requests\StoreListingRequest;
 use App\Http\Requests\UpdateListingRequest;
 use App\Models\Listing;
@@ -29,7 +31,7 @@ class ListingController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.listings.create');
     }
 
     /**
@@ -40,7 +42,9 @@ class ListingController extends Controller
      */
     public function store(StoreListingRequest $request)
     {
-        //
+        $validated = $request->validated();
+        
+        dd($validated);
     }
 
     /**

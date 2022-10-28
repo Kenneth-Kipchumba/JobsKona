@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('tags');
             $table->text('description');
+            $table->unsignedSmallInteger('slots');
             $table->timestamps();
             $table->softDeletes();
         });
