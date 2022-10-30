@@ -25,8 +25,9 @@ class StoreListingRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'tags' => 'required',
+            'tags' => '',
             'description' => 'required',
+            'slots' => 'required'
         ];
     }
 }

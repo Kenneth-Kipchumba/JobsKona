@@ -19,7 +19,7 @@ class ListingController extends Controller
     {
         $data['listings'] = Listing::latest()
                                     ->filter(request(['tag']))
-                                    ->get();
+                                    ->simplePaginate(6);
 
         return view('backend.listings.index', $data);
     }
@@ -42,9 +42,25 @@ class ListingController extends Controller
      */
     public function store(StoreListingRequest $request)
     {
-        $validated = $request->validated();
+        //$validated = $request->validated();
         
-        dd($validated);
+        //dd($validated);
+        $data = [
+            'company_id' => 1,
+            'user_id' => 1,
+            'title' => $request->input('title'),
+            'tags' => $request->input('tags'),
+            'description' => $request->input('description'),
+            'slots' => $request->input('slots'),
+        ];
+
+        
+        if (Listing::create($data))
+        {
+            return redirect()->back()->with('success', 'Job listed successfully');
+        }
+
+        return redirect('listings')->with('error', 'Something went wrong. Try again');
     }
 
     /**
@@ -54,7 +70,7 @@ class ListingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Listing $listing)
-    {
+    { 
         $data['listing'] = $listing;
 
         return view('backend.listings.show', $data);
@@ -80,7 +96,22 @@ class ListingController extends Controller
      */
     public function update(UpdateListingRequest $request, Listing $listing)
     {
-        //
+        $data = [
+            'company_id' => 1,
+            'user_id' => 1,
+            'title' => $request->input('title'),
+            'tags' => $request->input('tags'),
+            'description' => $request->input('description'),
+            'slots' => $request->input('slots'),
+        ];
+
+
+        if ($listing->update($data))
+        {
+            return redirect()->back()->with('success', 'Job listing updated successfully');
+        }
+
+        return redirect('listings')->with('error', 'Something went wrong. Try again');
     }
 
     /**
@@ -91,6 +122,11 @@ class ListingController extends Controller
      */
     public function destroy(Listing $listing)
     {
-        //
+        if ($listing->delete())
+        {
+            return redirect('listings')->with('success', 'Job listing deleted successfully');
+        }
+
+        return redirect('listings')->with('error', 'Something went wrong. Try again');
     }
 }

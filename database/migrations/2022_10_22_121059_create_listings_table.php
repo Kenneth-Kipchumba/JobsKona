@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('company_id');
             $table->foreignId('user_id');
             $table->string('title');
-            $table->string('tags');
+            $table->string('tags')->nullable();
             $table->text('description');
             $table->unsignedSmallInteger('slots');
             $table->timestamps();

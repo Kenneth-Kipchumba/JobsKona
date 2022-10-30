@@ -4,11 +4,11 @@
 
 <div class="container text-center">
   <div class="row mb-4">
-    <div class="col">
+    <div class="col-10">
       @if($errors->any())
         <div class="alert alert-danger">
           <p>
-            Job Not Successfully Posted For the following reasons :
+            Job Not Edited For the following reasons :
           </p>
           <ul>
             @foreach($errors->all() as $error)
@@ -20,28 +20,38 @@
 
       @include('backend/components/alerts')
     </div>
-    <div class="col text-end">
-      <button type="button" class="btn btn-outline-success" data-coreui-toggle="modal" data-coreui-target="#job-listing-create">
+    <div class="col-2 text-end">
+      <!-- <button type="button" class="btn btn-outline-success" data-coreui-toggle="modal" data-coreui-target="#job-listing-create">
         Post Job
-      </button>
+      </button> -->
     </div>
   </div>
 </div>
 
-<div class="row">
-  @foreach($listings as $listing)
-  <div class="col-sm-6 col-lg-4">
-    <div class="card mb-4">
+
+<div class="card mb-4">
       <div class="card-header">
-        <a href="{{ route('listings.show', $listing->id) }}">
-          <h4>{{ $listing->title }}</h4>
-        </a>
-        <p>
-          Posted on: 
-          <span class="badge bg-primary">
-            <?= date('D - d/m/Y H:i', strtotime($listing->created_at)) ?>
-          </span>
-        </p>
+        <div class="row">
+        	<div class="col-10">
+        		<h4>{{ $listing->title }}</h4>
+		        <p>
+		          Posted on: 
+		          <span class="badge bg-primary">
+		            <?= date('D - d/m/Y H:i', strtotime($listing->created_at)) ?>
+		          </span>
+		        </p>
+        	</div>
+        	<div class="col-2 text-end">
+        		<button type="button" class="btn btn-outline-info" data-coreui-toggle="modal" data-coreui-target="#edit">
+        			<i class="fas fa-trash"></i>
+		        	Edit
+		        </button>
+		        <button type="button" class="btn btn-outline-danger" data-coreui-toggle="modal" data-coreui-target="#delete">
+		        	<i class="fas fa-trash"></i>
+		        	Delete
+		        </button>
+        	</div>
+        </div>
       </div>
       <div class="card-body">
         <div class="row">
@@ -83,30 +93,26 @@
         <button>Apply Now</button>
       </div>
     </div>
-  </div>
-  @endforeach
-</div>
 
-  {{ $listings->links() }}
-
-<!--Job Create Modal -->
-<div class="modal fade" id="job-listing-create" data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<!--Edit Modal -->
+<div class="modal fade" id="edit" data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">
-          Create Job
+          Edit This Job Listing.
         </h5>
         <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="{{ route('listings.store') }}" multiple>
+        <form method="POST" action="{{ route('listings.update', $listing->id) }}" multiple>
           @csrf
+          @method('PATCH')
           <div class="mb-3">
             <label for="title" class="form-label">
               Job Title
             </label>
-            <input type="text" class="form-control" name="title" id="title" aria-describedby="title" value="{{ old('title') }}">
+            <input type="text" class="form-control" name="title" id="title" aria-describedby="title" value="{{ $listing->title }}">
             <div id="title" class="form-text">
               e.g Call Center Agent
             </div>
@@ -133,7 +139,7 @@
               Job Description
             </label>
               <textarea class="form-control" id="description" name="description" rows="3">
-                {{ old('description') }}
+                {{ $listing->description }}
               </textarea>
             <div id="description" class="form-text">
               Job Requirements e.t.c
@@ -144,13 +150,13 @@
             <label for="slots" class="form-label">
               Slots
             </label>
-            <input type="number" class="form-control" name="slots" id="slots" aria-describedby="slots" value="{{ old('slots') }}">
+            <input type="number" class="form-control" name="slots" id="slots" aria-describedby="slots" value="{{ $listing->slots }}">
             <div id="slots" class="form-text">
               Number of slots
             </div>
           </div>
 
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary">Update</button>
         </form>
       </div>
       <div class="modal-footer">
@@ -159,7 +165,36 @@
     </div>
   </div>
 </div>
-<!-- End Job Create Modal -->
+<!-- End Edit Modal -->
+
+
+<!--Delete Modal -->
+<div class="modal fade" id="delete" data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">
+          Delete This Job Listing ?
+        </h5>
+        <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="{{ route('listings.destroy', $listing->id) }}">
+        	@csrf
+        	@method('DELETE')
+        	<button onclick="confirm('Are you sure ?')" type="submit" class="btn btn-outline-danger">
+        		<i class="fas fa-trash"></i>
+        		Delete
+        	</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Delete Modal -->
 
 
 @endsection

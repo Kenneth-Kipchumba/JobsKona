@@ -19,7 +19,7 @@ class ListingPolicy
      */
     public function viewAny(User $user)
     {
-        return false;
+        //
     }
 
     /**
@@ -40,9 +40,9 @@ class ListingPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function create(User $user, Listing $listing)
     {
-        return false;
+        //
     }
 
     /**
@@ -54,7 +54,9 @@ class ListingPolicy
      */
     public function update(User $user, Listing $listing)
     {
-        //
+        return $user->id; === $listing->user_id
+               ? Response::allow() 
+               : Response::deny('You do not own this Job Listing') ;
     }
 
     /**
