@@ -30,4 +30,16 @@ class Listing extends Model
             $query->where('tags', 'like', '%' . request('tag') . '%');
         }
     }
+
+    // Listing relationship with a user
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    // Listing relationship with a company
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
 }

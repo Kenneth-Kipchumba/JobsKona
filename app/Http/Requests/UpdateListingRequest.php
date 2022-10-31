@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Listing;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateListingRequest extends FormRequest
@@ -13,7 +14,17 @@ class UpdateListingRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        Listin::
+
+        dd($listing->user_id . '=' . auth()->user()->id);
+        if ($listing->user_id != auth()->user()->id)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     /**

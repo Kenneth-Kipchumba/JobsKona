@@ -19,7 +19,7 @@ class ListingController extends Controller
     {
         $data['listings'] = Listing::latest()
                                     ->filter(request(['tag']))
-                                    ->simplePaginate(6);
+                                    ->paginate(6);
 
         return view('backend.listings.index', $data);
     }
@@ -47,7 +47,7 @@ class ListingController extends Controller
         //dd($validated);
         $data = [
             'company_id' => 1,
-            'user_id' => 1,
+            'user_id' => auth()->user()->id,
             'title' => $request->input('title'),
             'tags' => $request->input('tags'),
             'description' => $request->input('description'),
