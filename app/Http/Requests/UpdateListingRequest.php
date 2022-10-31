@@ -14,17 +14,19 @@ class UpdateListingRequest extends FormRequest
      */
     public function authorize()
     {
-        Listin::
+        // Listin::
 
-        dd($listing->user_id . '=' . auth()->user()->id);
-        if ($listing->user_id != auth()->user()->id)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        // dd($listing->user_id . '=' . auth()->user()->id);
+        // if ($listing->user_id != auth()->user()->id)
+        // {
+        //     return false;
+        // }
+        // else
+        // {
+        //     return true;
+        // }
+
+        return true;
     }
 
     /**
