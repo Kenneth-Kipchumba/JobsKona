@@ -46,13 +46,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // User relationship with listings
+    // User belongs to many roles relationship
+    public function roles()
+    {
+        $this->belongsToMany(Role::class);
+    }
+
+    // User has many listings relationship
     public function listings()
     {
         return $this->hasMany(Listing::class);
     }
 
-    // User relationship with companies
+    // User has many companies relationship
     public function companies()
     {
         return $this->hasMany(Company::class);

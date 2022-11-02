@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Listing;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class JobSeeder extends Seeder
+class ListingSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +15,6 @@ class JobSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Listing::factory()->times(20)->create();
     }
 }
