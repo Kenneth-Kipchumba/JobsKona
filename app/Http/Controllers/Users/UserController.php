@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 
 class UserController extends Controller
 {
@@ -14,7 +16,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('backend.users.index');
+        $data['users'] = User::paginate(10);
+        $data['url'] = URL::class;
+
+        return view('backend.users.index', $data);
     }
 
     /**

@@ -10,7 +10,7 @@
     </div>
     <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
         <li class="nav-item">
-            <a class="nav-link" href="{{ url('listings') }}">
+            <a class="nav-link" href="{{ url('admin/listings') }}">
                 <div class="nav-icon">
                     <i class="fa-solid fa-desktop"></i>
                 </div>
@@ -20,27 +20,26 @@
         </li>
         
         
-        <li class="nav-title">Categories</li>
+        <li class="nav-title">User Management</li>
         <li class="nav-group">
             <a class="nav-link nav-group-toggle" href="#">
                 <div class="nav-icon">
                     <i class="fa-solid fa-book"></i>
-                </div> Main Category
+                </div> Users
             </a>
             <ul class="nav-group-items">
                 <li class="nav-item">
-                    <a class="nav-link" href="base/accordion.html">
-                        <span class="nav-icon"></span> Sub Category
+                    <a class="nav-link" href="{{ route('admin.users.index') }}">
+                        <span class="nav-icon">
+                            <i class="fas fa-users"></i>
+                        </span> Users
                     </a>
                 </li>
                <li class="nav-item">
-                    <a class="nav-link" href="base/accordion.html">
-                        <span class="nav-icon"></span> Sub Category
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="base/accordion.html">
-                        <span class="nav-icon"></span> Sub Category
+                    <a class="nav-link" href="{{ route('admin.roles.index') }}">
+                        <span class="nav-icon">
+                            <i class="fas fa-user-lock"></i>
+                        </span> Roles
                     </a>
                 </li>
             </ul>

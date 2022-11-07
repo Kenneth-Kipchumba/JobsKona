@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\Users\RoleController;
 use App\Http\Controllers\Users\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,8 +24,12 @@ Route::get('home', function () {
     return view('frontend/home');
 });
 
-/* User Routes */
-Route::get('users', [UserController::class, 'index']);
-
-/* Listing Routes*/
-Route::resource('listings', ListingController::class);
+// Admin Routes
+Route::prefix('admin')->name('admin.')->group(function ()
+{
+    /* User Related Routes */
+    Route::resource('/users', UserController::class);
+    Route::resource('/roles', RoleController::class);
+    /* Listing Routes*/
+    Route::resource('listings', ListingController::class);
+});

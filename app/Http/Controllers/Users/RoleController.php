@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Users;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
 use App\Models\Role;
@@ -15,7 +16,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $data['roles'] = Role::paginate(5);
+
+        return view('backend.roles.index', $data);
     }
 
     /**

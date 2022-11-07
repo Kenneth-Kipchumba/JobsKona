@@ -5,7 +5,7 @@
 <div class="bg-light min-vh-100 d-flex flex-row align-items-center dark:bg-transparent">
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-lg-8">
+      <div class="col-lg-9">
         <div class="card-group d-block d-md-flex row">
           <div class="card col-md-7 p-4 mb-0">
             <form action="{{ route('login') }}" method="POST" class="needs-validation">
@@ -49,23 +49,45 @@
                       <button class="btn btn-primary px-4" type="submit">Login</button>
                     </div>
                     <div class="col-6 text-end">
-                      <button class="btn btn-link px-0" type="button">Forgot password?</button>
+                      <button class="btn btn-link px-0" type="button"></button>
+                      <a href="{{ route('password.request') }}" class="btn btn-link px-0">
+                        Forgot password?
+                      </a>
                     </div>
                   </div>
               </div>
             </form>
-              </div>
+            </div>
+            <?php if(session('success')) : ?>
               <div class="card col-md-5 text-white bg-primary py-5">
                 <div class="card-body text-center">
                   <div>
-                    <h1 style="text-decoration: underline;">Sign up</h1>
-                    <hr class="mb-3">
-                    <p>New To <strong>{{ config('app.name') }}</strong> ?</p>
-                    <p>Sign up today.</p>
-                    <a href="{{ route('register') }}" class="btn btn-lg btn-outline-light mt-3">Register Now!</a>
+                      @include('backend.components.alerts')
                   </div>
                 </div>
               </div>
+            <?php elseif(session('status')) : ?>
+            <div class="card col-md-5 text-white bg-primary py-5">
+              <div class="card-body text-center">
+                <div>
+                  @include('backend.components.alerts')
+                </div>
+              </div>
+            </div>
+            
+            <?php else : ?>
+            <div class="card col-md-5 text-white bg-primary py-5">
+              <div class="card-body text-center">
+                <div>
+                  <h1 style="text-decoration: underline;">Sign up</h1>
+                  <hr class="mb-3">
+                  <p>New To <strong>{{ config('app.name') }}</strong> ?</p>
+                  <p>Sign up today.</p>
+                  <a href="{{ route('register') }}" class="btn btn-lg btn-outline-light mt-3">Register Now!</a>
+                </div>
+              </div>
+              </div>
+            <?php endif; ?>
             </div>
           </div>
         </div>

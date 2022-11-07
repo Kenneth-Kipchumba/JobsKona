@@ -24,11 +24,11 @@
                         </p>
                       </div>
                     </div>
-                    <div class="input-group mb-3"><span class="input-group-text">
-                        <svg class="icon">
-                          <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-user"></use>
-                        </svg></span>
-                      <input class="form-control" type="email" placeholder="Enter your email">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text">
+                        <i class="fas fa-envelope"></i>
+                      </span>
+                      <input class="form-control" type="email" name="email" placeholder="Enter your email">
                     </div>
                     <div class="row">
                       <div class="col text-end">

@@ -9,37 +9,39 @@
             <div class="card-group d-block d-md-flex row">
               <div class="card col-md-7 p-4 mb-0">
                 <div class="card-body">
+                <form method="POST" action="{{ url('reset-password') }}">
+                  @csrf
                   <h1>Reset Password</h1>
-                  <p class="text-medium-emphasis">Sign In to your account</p>
-                  <div class="input-group mb-3"><span class="input-group-text">
-                      <svg class="icon">
-                        <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-user"></use>
-                      </svg></span>
-                    <input class="form-control" type="text" placeholder="Username">
+                  <hr class="mb-4">
+                  @if($errors->any)
+                    @include('backend.components.alerts')
+                  @endif
+                  <input type="hidden" name="token" value="{{ request()->route('token') }}">
+                  
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">
+                      <i class="fas fa-user"></i>
+                    </span>
+                    <input class="form-control" type="email" placeholder="Email" name="email">
                   </div>
-                  <div class="input-group mb-4"><span class="input-group-text">
-                      <svg class="icon">
-                        <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-lock-locked"></use>
-                      </svg></span>
-                    <input class="form-control" type="password" placeholder="Password">
+                  <div class="input-group mb-4">
+                    <span class="input-group-text">
+                      <i class="fas fa-lock"></i>
+                    </span>
+                    <input class="form-control" type="password" placeholder="Password" name="password">
+                  </div>
+                  <div class="input-group mb-4">
+                    <span class="input-group-text">
+                      <i class="fas fa-lock"></i>
+                    </span>
+                    <input class="form-control" type="password" name="Password_confirmation" placeholder="Confirm Password">
                   </div>
                   <div class="row">
                     <div class="col-6">
-                      <button class="btn btn-primary px-4" type="button">Login</button>
-                    </div>
-                    <div class="col-6 text-end">
-                      <button class="btn btn-link px-0" type="button">Forgot password?</button>
+                      <button class="btn btn-primary px-4" type="submit">Reset Password</button>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="card col-md-5 text-white bg-primary py-5">
-                <div class="card-body text-center">
-                  <div>
-                    <h2>Sign up</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <a href="{{ route('register') }}" class="btn btn-lg btn-outline-light mt-3">Register Now!</a>
-                  </div>
+                </form>
                 </div>
               </div>
             </div>
