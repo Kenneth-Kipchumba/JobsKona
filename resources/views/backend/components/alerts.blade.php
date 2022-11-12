@@ -4,6 +4,18 @@
   </div>
 @endif
 
+@if(session('info'))
+  <div class="alert alert-info">
+    <p>{{ session('info') }}</p>
+  </div>
+@endif
+
+@if(session('danger'))
+  <div class="alert alert-danger">
+    <p>{{ session('danger') }}</p>
+  </div>
+@endif
+
 @if(session('status'))
   <div class="alert alert-info">
     {{ session('status') }}

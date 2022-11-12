@@ -84,6 +84,16 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        if ($role)
+        {
+            Role::destroy($role->id);
+
+            return redirect('admin/roles')->with('info', 'Role successfully removed');
+        }
+        else
+        {
+            return redirect('admin/roles')->with('warning', 'Something went wrong. Try again');
+        }
+        
     }
 }

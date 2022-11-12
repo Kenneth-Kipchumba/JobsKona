@@ -9,6 +9,16 @@ class Role extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+        'decsription'
+    ];
+
     // Role belongs to many relationship
     public function users()
     {
