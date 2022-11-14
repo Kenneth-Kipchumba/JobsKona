@@ -10,7 +10,7 @@
     </div>
     <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
         <li class="nav-item">
-            <a class="nav-link" href="{{ url('admin/listings') }}">
+            <a class="nav-link" href="{{ url('listings') }}">
                 <div class="nav-icon">
                     <i class="fa-solid fa-desktop"></i>
                 </div>

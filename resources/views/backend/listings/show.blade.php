@@ -80,7 +80,7 @@
                 <ul>
                   @foreach($csvtags as $tags)
                   <li>
-                    <a href="{{ url('admin/listings') }}/?tag={{$tags}}">
+                    <a href="{{ url('listings') }}/?tag={{$tags}}">
                       {{ $tags }}
                     </a>
                   </li>
@@ -107,7 +107,7 @@
         <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="{{ route('admin.listings.update', $listing->id) }}" multiple>
+        <form method="POST" action="{{ route('listings.update', $listing->id) }}" multiple>
           @csrf
           @method('PATCH')
           <div class="mb-3">
@@ -181,7 +181,7 @@
         <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="{{ route('admin.listings.destroy', $listing->id) }}">
+        <form method="POST" action="{{ route('listings.destroy', $listing->id) }}">
         	@csrf
         	@method('DELETE')
         	<button onclick="confirm('Are you sure ?')" type="submit" class="btn btn-outline-danger">

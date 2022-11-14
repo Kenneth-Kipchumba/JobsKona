@@ -25,11 +25,15 @@ Route::get('home', function () {
 });
 
 // Admin Routes
-Route::middleware('auth')->prefix('admin')->name('admin.')->group(function ()
+Route::middleware(['auth','auth.admin'])->prefix('admin')->name('admin.')->group(function ()
 {
     /* User Related Routes */
     Route::resource('/users', UserController::class);
     Route::resource('/roles', RoleController::class);
+});
+
+Route::middleware(['auth','auth.agent'])->group(function ()
+{
     /* Listing Routes*/
     Route::resource('listings', ListingController::class);
 });

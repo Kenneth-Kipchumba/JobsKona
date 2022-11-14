@@ -35,7 +35,7 @@
   <div class="col-sm-6 col-lg-4">
     <div class="card mb-4">
       <div class="card-header">
-        <a href="{{ route('admin.listings.show', $listing->id) }}">
+        <a href="{{ route('listings.show', $listing->id) }}">
           <h4>{{ $listing->title }}</h4>
         </a>
         <p>
@@ -70,7 +70,7 @@
                 <ul>
                   @foreach($csvtags as $tags)
                   <li>
-                    <a href="{{ url('admin/listings') }}/?tag={{$tags}}">
+                    <a href="{{ url('listings') }}/?tag={{$tags}}">
                       {{ $tags }}
                     </a>
                   </li>
@@ -102,7 +102,7 @@
         <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="{{ route('admin.listings.store') }}" multiple>
+        <form method="POST" action="{{ route('listings.store') }}" multiple>
           @csrf
           <div class="mb-3">
             <label for="title" class="form-label">

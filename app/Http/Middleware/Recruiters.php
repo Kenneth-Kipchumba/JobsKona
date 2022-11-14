@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
-class Admins
+class Recruiters
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class Admins
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Gate::allows('is-admin'))
+        if (Gate::allows('is-recruiter'))
         {
             return $next($request);
         }
