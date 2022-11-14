@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\URL;
 
 class UserController extends Controller
@@ -16,10 +18,16 @@ class UserController extends Controller
      */
     public function index()
     {
+        $data['roles'] = Role::all();
         $data['users'] = User::paginate(10);
         $data['url'] = URL::class;
 
-        return view('backend.users.index', $data);
+        if (Gate::allows('is-admin'))
+        {
+            return view('backend.users.index', $data);
+        }
+
+        return redirect('/')->with('warning', 'Reserved for Admins only');
     }
 
     /**
@@ -74,7 +82,13 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //dd($request->input('user_id'));
+        $user = User::findOrFail($id);
+
+        $user->update($request->except('_token','roles'));
+        $user->roles()->sync($request->roles);
+
+        return redirect('admin/users')->with('success', 'The user now has a new role');
     }
 
     /**

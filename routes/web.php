@@ -25,7 +25,7 @@ Route::get('home', function () {
 });
 
 // Admin Routes
-Route::prefix('admin')->name('admin.')->group(function ()
+Route::middleware('auth')->prefix('admin')->name('admin.')->group(function ()
 {
     /* User Related Routes */
     Route::resource('/users', UserController::class);

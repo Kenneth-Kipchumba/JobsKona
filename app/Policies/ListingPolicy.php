@@ -54,7 +54,7 @@ class ListingPolicy
      */
     public function update(User $user, Listing $listing)
     {
-        return $user->id; === $listing->user_id
+        return $user->id === $listing->user_id
                ? Response::allow() 
                : Response::deny('You do not own this Job Listing') ;
     }

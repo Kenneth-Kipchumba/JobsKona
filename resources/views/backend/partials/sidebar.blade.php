@@ -19,7 +19,7 @@
             </a>
         </li>
         
-        
+        @can('is-admin')
         <li class="nav-title">User Management</li>
         <li class="nav-group">
             <a class="nav-link nav-group-toggle" href="#">
@@ -28,6 +28,7 @@
                 </div> Users
             </a>
             <ul class="nav-group-items">
+                
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.users.index') }}">
                         <span class="nav-icon">
@@ -35,6 +36,7 @@
                         </span> Users
                     </a>
                 </li>
+
                <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.roles.index') }}">
                         <span class="nav-icon">
@@ -42,8 +44,10 @@
                         </span> Roles
                     </a>
                 </li>
+
             </ul>
         </li>
+        @endcan
 
         <li class="nav-divider"></li>
         <li class="nav-title">Others</li>

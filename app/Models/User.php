@@ -49,7 +49,27 @@ class User extends Authenticatable
     // User belongs to many roles relationship
     public function roles()
     {
-        $this->belongsToMany(Role::class);
+        return $this->belongsToMany(Role::class);
+    }
+
+    /**
+     * Check if the user has the passed in role
+     * @param string $role
+     * @return bool
+     */
+    public function hasAnyRole(string $role)
+    {
+        return null !== $this->roles()->where('name', $role)->first();
+    }
+
+    /**
+     * Check if the user has the passed in roles
+     * @param array $role
+     * @return bool
+     */
+    public function hasAnyRoles(array $role)
+    {
+        return null !== $this->roles()->whereIn('name', $role)->first();
     }
 
     // User has many listings relationship

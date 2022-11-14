@@ -21,9 +21,11 @@
       @include('backend/components/alerts')
     </div>
     <div class="col text-end">
+      @can('is-recruiter')
       <button type="button" class="btn btn-outline-success" data-coreui-toggle="modal" data-coreui-target="#job-listing-create">
         Post Job
       </button>
+      @endcan
     </div>
   </div>
 </div>

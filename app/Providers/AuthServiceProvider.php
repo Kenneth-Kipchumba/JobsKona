@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Gate;
 
 use App\Models\Listing;
 use App\Policies\ListingPolicy;
@@ -29,6 +29,20 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('is-admin', function ($user)
+        {
+            return $user->hasAnyRole('Admin');
+            //return $user->hasAnyRoles(['admin','agent']);
+        });
+
+        Gate::define('is-recruiter', function ($user)
+        {
+            return $user->hasAnyRoles(['Admin','Recruiter']);
+        });
+
+        Gate::define('is-agent', function ($user)
+        {
+            return $user->hasAnyRoles(['Admin','Recruiter','Agent']);
+        });
     }
 }
