@@ -39,7 +39,22 @@ class RoleController extends Controller
      */
     public function store(StoreRoleRequest $request)
     {
-        //
+        $data = [
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+        ];
+
+        //dd($data);
+
+        if (Role::create($data))
+        {
+            return redirect()->back()->with('success', 'The new Role has been created successfully');
+        }
+        else
+        {
+            return redirect('admin/roles')->with('error', 'Something went wrong. Try again');
+        }
+        
     }
 
     /**

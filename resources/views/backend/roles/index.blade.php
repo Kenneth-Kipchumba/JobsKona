@@ -33,34 +33,44 @@
         </button>
 
         <!-- Edit Modal -->
-          <div class="modal fade" id="edit-{{ $role->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Edit {{ $role->name }} Role</h5>
-                  <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
+        <div class="modal fade" id="edit-{{ $role->id }}" tabindex="-1" aria-labelledby="RoleLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="RoleLabel">Edit {{ $role->name }}  Role</h5>
+              <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form action="{{ route('admin.roles.update', $role->id) }}" method="POST">
+                @csrf
+                <div class="mb-3">
+                  <label for="name" class="form-label">Role</label>
+                  <input type="text" class="form-control" id="name" name="name" aria-describedby="user_role" value="{{ $role->name }}">
+                  <div id="user_role" class="form-text">
+                    Role Name
+                  </div>
                 </div>
-                <div class="modal-body">
-                  <form action="" method="POST">
-                    @csrf
-                    @method('PATCH')
-                    <div class="mb-3">
-                      <label for="name" class="form-label">Role Name</label>
-                      <input type="text" class="form-control" id="name" aria-describedby="user_role">
-                      <div id="user_role" class="form-text">
-                        User Role
-                      </div>
-                    </div>
-                 
-                    <button type="submit" class="btn btn-primary">Update</button>
-                  </form>
+                <div class="mb-3">
+                  <label for="description" class="form-label">Description</label>
+                  <textarea class="form-control" id="description" name="description" aria-describedby="role_description">
+                    {{ $role->description }}
+                  </textarea>
+                  <div id="role_description" class="form-text">
+                    Role Description
+                  </div>
                 </div>
-                <div class="modal-footer">
-                  <!-- <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Close</button> -->
-                </div>
-              </div>
+                       
+                <button type="submit" class="btn btn-primary">
+                  Create
+                </button>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <!-- <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Close</button> -->
             </div>
           </div>
+        </div>
+      </div>
         <!--End  Edit Modal -->
 
         <!-- Delete Modal -->
