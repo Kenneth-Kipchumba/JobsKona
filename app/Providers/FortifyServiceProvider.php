@@ -65,5 +65,10 @@ class FortifyServiceProvider extends ServiceProvider
         {
             return view('auth.forgot_password');
         });
+
+        Fortify::verifyEmailView(function ()
+        {
+            return view('auth.verify_email');
+        });
     }
 }

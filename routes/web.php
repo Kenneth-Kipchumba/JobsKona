@@ -32,7 +32,7 @@ Route::middleware(['auth','auth.admin'])->prefix('admin')->name('admin.')->group
     Route::resource('/roles', RoleController::class);
 });
 
-Route::middleware(['auth','auth.agent'])->group(function ()
+Route::middleware(['auth', 'verified'/*,'auth.agent'*/])->group(function ()
 {
     /* Listing Routes*/
     Route::resource('listings', ListingController::class);
