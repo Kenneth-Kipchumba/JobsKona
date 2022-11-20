@@ -24,8 +24,6 @@ class UserSeeder extends Seeder
             'first_name' => 'Kenneth',
             'last_name' => 'Kipchumba',
             'email' => 'kipchumba.kenneth@ymail.com',
-            'phone' => '0788491402',
-            'linked_in' => 'linkedin.com',
             'password' => Hash::make('password')
         ]);
     }

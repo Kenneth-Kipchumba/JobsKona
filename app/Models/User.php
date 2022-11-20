@@ -22,8 +22,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'first_name',
         'last_name',
         'email',
-        'phone',
-        'linked_in',
         'password',
     ];
 
@@ -45,6 +43,12 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // User has a profile
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
 
     // User belongs to many roles relationship
     public function roles()

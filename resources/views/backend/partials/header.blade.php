@@ -46,10 +46,8 @@
 			<div class="dropdown-header bg-light py-2">
 				<div class="fw-semibold">Account Settings</div>
 			</div>
-		<a class="dropdown-item" href="#">
-			<svg class="icon me-2">
-				<use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-			</svg> Profile
+		<a class="dropdown-item" href="{{ route('user.profile.show', 1) }}">
+			Profile
 		</a>
 
 		<a class="dropdown-item" href="#">

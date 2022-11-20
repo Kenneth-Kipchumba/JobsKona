@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\Users\ProfileController;
 use App\Http\Controllers\Users\RoleController;
 use App\Http\Controllers\Users\UserController;
 use Illuminate\Support\Facades\Route;
@@ -32,7 +33,13 @@ Route::middleware(['auth','auth.admin'])->prefix('admin')->name('admin.')->group
     Route::resource('/roles', RoleController::class);
 });
 
-Route::middleware(['auth', 'verified'/*,'auth.agent'*/])->group(function ()
+// User Related Pages
+Route::middleware(['auth','verified'])->prefix('user')->name('user.')->group(function ()
+{
+    Route::resource('/profile', ProfileController::class);
+});
+
+Route::middleware(['auth', 'verified'])->group(function ()
 {
     /* Listing Routes*/
     Route::resource('listings', ListingController::class);
