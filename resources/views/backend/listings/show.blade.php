@@ -32,7 +32,7 @@
 <div class="card mb-4">
       <div class="card-header">
         <div class="row">
-        	<div class="col-10">
+        	<div class="col-8">
         		<h4>{{ $listing->title }}</h4>
 		        <p>
 		          Posted on: 
@@ -41,13 +41,19 @@
 		          </span>
 		        </p>
         	</div>
+          <div class="col-2">
+            <button title="Click to see job requirements" type="button" class="btn btn-sm btn-outline-info" data-coreui-toggle="modal" data-coreui-target="#requirements">
+              <i class="fas fa-list"></i>
+               Requirements
+            </button>
+          </div>
         	<div class="col-2 text-end">
             @can('is-recruiter')
-        		<button type="button" class="btn btn-outline-info" data-coreui-toggle="modal" data-coreui-target="#edit">
+        		<button type="button" class="btn btn-sm btn-outline-info" data-coreui-toggle="modal" data-coreui-target="#edit">
         			<i class="fas fa-trash"></i>
 		        	Edit
 		        </button>
-		        <button type="button" class="btn btn-outline-danger" data-coreui-toggle="modal" data-coreui-target="#delete">
+		        <button type="button" class="btn btn-sm btn-outline-danger" data-coreui-toggle="modal" data-coreui-target="#delete">
 		        	<i class="fas fa-trash"></i>
 		        	Delete
 		        </button>
@@ -197,6 +203,34 @@
   </div>
 </div>
 <!-- End Delete Modal -->
+
+<!--Requirements Modal -->
+<div class="modal fade" id="requirements" data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">
+          Job Requirements
+        </h5>
+        <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group">
+          <li class="list-group-item">
+            Requirement 1
+          </li>
+          <li class="list-group-item">
+            Requirement 2
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Requirements Modal -->
 
 
 @endsection

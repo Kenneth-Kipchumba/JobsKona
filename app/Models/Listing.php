@@ -42,4 +42,10 @@ class Listing extends Model
     {
         return $this->belongsTo(Company::class);
     }
+
+    // This listing may have requirements
+    public function requirements()
+    {
+        return $this->hasOne(Requirement::class);
+    }
 }

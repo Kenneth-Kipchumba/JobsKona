@@ -139,7 +139,7 @@ class ProfileController extends Controller
 
         if ($profile->update($data))
         {
-            return redirect()->back()->with('success', 'Your Profile has been created successfully');
+            return redirect()->back()->with('success', 'Your Profile has been updated successfully');
         }
 
         return redirect('listings')->with('error', 'Something went wrong. Try again');

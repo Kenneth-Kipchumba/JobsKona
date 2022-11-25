@@ -57,7 +57,7 @@ class ListingController extends Controller
         
         if (Listing::create($data))
         {
-            return redirect()->back()->with('success', 'Job listed successfully');
+            return redirect()->route('requirements.index')->with('success', 'Job Listed Successfully. You can optionally add requirements to this job');
         }
 
         return redirect('listings')->with('error', 'Something went wrong. Try again');
