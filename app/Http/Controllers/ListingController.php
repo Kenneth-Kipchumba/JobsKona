@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\StoreListingRequest;
 use App\Http\Requests\UpdateListingRequest;
 use App\Models\Listing;
+use App\Models\Requirement;
 
 class ListingController extends Controller
 {
@@ -46,7 +47,6 @@ class ListingController extends Controller
         
         //dd($validated);
         $data = [
-            'company_id' => 1,
             'user_id' => auth()->user()->id,
             'title' => $request->input('title'),
             'tags' => $request->input('tags'),
@@ -72,6 +72,8 @@ class ListingController extends Controller
     public function show(Listing $listing)
     { 
         $data['listing'] = $listing;
+        $data['requirements'] = Requirement::where('listing_id', $listing->id)->get();
+        //dd($data['requirements']);
 
         return view('backend.listings.show', $data);
     }
@@ -97,7 +99,6 @@ class ListingController extends Controller
     public function update(UpdateListingRequest $request, Listing $listing)
     {
         $data = [
-            'company_id' => 1,
             'user_id' => 1,
             'title' => $request->input('title'),
             'tags' => $request->input('tags'),

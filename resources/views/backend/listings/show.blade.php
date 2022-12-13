@@ -42,10 +42,10 @@
 		        </p>
         	</div>
           <div class="col-2">
-            <button title="Click to see job requirements" type="button" class="btn btn-sm btn-outline-info" data-coreui-toggle="modal" data-coreui-target="#requirements">
-              <i class="fas fa-list"></i>
-               Requirements
-            </button>
+              <button title="Click to see job requirements" type="button" class="btn btn-sm btn-outline-info" data-coreui-toggle="modal" data-coreui-target="#requirements">
+                <i class="fas fa-list"></i>
+                 Requirements
+              </button>
           </div>
         	<div class="col-2 text-end">
             @can('is-recruiter')
@@ -216,12 +216,25 @@
       </div>
       <div class="modal-body">
         <ul class="list-group">
-          <li class="list-group-item">
-            Requirement 1
-          </li>
-          <li class="list-group-item">
-            Requirement 2
-          </li>
+          @if($requirements)
+            @foreach($requirements as $requirement)
+              <li class="list-group-item">
+                  {{ $requirement->requirement_1 }}
+              </li>
+              <li class="list-group-item">
+                  {{ $requirement->requirement_2 }}
+              </li>
+              <li class="list-group-item">
+                  {{ $requirement->requirement_3 }}
+              </li>
+              <li class="list-group-item">
+                  {{ $requirement->requirement_4 }}
+              </li>
+              <li class="list-group-item">
+                  {{ $requirement->requirement_5 }}
+              </li>
+            @endforeach
+          @endif
         </ul>
       </div>
       <div class="modal-footer">

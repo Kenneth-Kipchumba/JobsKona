@@ -45,7 +45,7 @@ class RequirementController extends Controller
      */
     public function store(StoreRequirementRequest $request)
     {
-        $data['requirements'] = [
+        $requirements = [
             'listing_id'    => $request->input('listing_id'),
             'requirement_1' => $request->input('requirement_1'),
             'requirement_2' => $request->input('requirement_2'),
@@ -54,8 +54,8 @@ class RequirementController extends Controller
             'requirement_5' => $request->input('requirement_5'),
         ];
 
-        dd($data);
-        if (Requirement::create($data))
+        //dd($data);
+        if (Requirement::create($requirements))
         {
             return redirect('listings')->with('success', 'Job Requirements added Successfully.');
         }
