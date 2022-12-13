@@ -17,8 +17,7 @@ class ListingFactory extends Factory
     public function definition()
     {
         return [
-            'company_id' => fake()->numerify(),
-            'user_id' => fake()->numerify(),
+            'user_id' => 1/*fake()->numerify()*/,
             'title' => 'Call Center Agent',
             'tags'  => 'Call Center,QC,Supervisor',
             'description' => 'CATI - Computer Aided Telphonic Interviews',

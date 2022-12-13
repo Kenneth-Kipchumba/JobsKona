@@ -20,7 +20,6 @@ class UserSeeder extends Seeder
         //User::factory()->times(20)->create();
 
         DB::table('users')->insert([
-            'company_id' => 1,
             'first_name' => 'Kenneth',
             'last_name' => 'Kipchumba',
             'email' => 'kipchumba.kenneth@ymail.com',

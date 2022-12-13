@@ -38,6 +38,7 @@ return new class extends Migration
             $table->mediumText('professional_achievement_4')->nullable();
             $table->mediumText('professional_achievement_5')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

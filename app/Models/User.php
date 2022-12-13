@@ -18,7 +18,6 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<int, string>
      */
     protected $fillable = [
-        'company_id',
         'first_name',
         'last_name',
         'email',
@@ -80,11 +79,5 @@ class User extends Authenticatable implements MustVerifyEmail
     public function listings()
     {
         return $this->hasMany(Listing::class);
-    }
-
-    // User has many companies relationship
-    public function companies()
-    {
-        return $this->hasMany(Company::class);
     }
 }

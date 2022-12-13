@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('requirement_4')->nullable();
             $table->mediumText('requirement_5')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

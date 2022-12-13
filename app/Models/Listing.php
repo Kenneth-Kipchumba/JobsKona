@@ -15,7 +15,6 @@ class Listing extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'company_id',
         'user_id',
         'title',
         'tags',
@@ -35,12 +34,6 @@ class Listing extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    // Listing relationship with a company
-    public function company()
-    {
-        return $this->belongsTo(Company::class);
     }
 
     // This listing may have requirements

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRequirementRequest;
 use App\Http\Requests\UpdateRequirementRequest;
+use App\Models\Listing;
 use App\Models\Requirement;
 
 class RequirementController extends Controller
@@ -15,7 +16,15 @@ class RequirementController extends Controller
      */
     public function index()
     {
-        return view('backend.requirements.index');
+        /**
+         * Ensure Job poster can only see their own job listings
+         */
+        $user_id = auth()->id();
+        $data['listings'] = Listing::where('user_id', $user_id)
+                                    ->get();
+        //dd($data['listings']);
+
+        return view('backend.requirements.index', $data);
     }
 
     /**
@@ -36,7 +45,22 @@ class RequirementController extends Controller
      */
     public function store(StoreRequirementRequest $request)
     {
-        //
+        $data['requirements'] = [
+            'listing_id'    => $request->input('listing_id'),
+            'requirement_1' => $request->input('requirement_1'),
+            'requirement_2' => $request->input('requirement_2'),
+            'requirement_3' => $request->input('requirement_3'),
+            'requirement_4' => $request->input('requirement_4'),
+            'requirement_5' => $request->input('requirement_5'),
+        ];
+
+        dd($data);
+        if (Requirement::create($data))
+        {
+            return redirect('listings')->with('success', 'Job Requirements added Successfully.');
+        }
+
+        return redirect('listings')->with('error', 'Something went wrong. Try again');
     }
 
     /**
