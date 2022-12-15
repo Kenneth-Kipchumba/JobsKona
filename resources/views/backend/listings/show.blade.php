@@ -42,18 +42,18 @@
 		        </p>
         	</div>
           <div class="col-2">
-              <button title="Click to see job requirements" type="button" class="btn btn-sm btn-outline-info" data-coreui-toggle="modal" data-coreui-target="#requirements">
-                <i class="fas fa-list"></i>
-                 Requirements
-              </button>
+            <button title="Click to see job requirements" type="button" class="btn btn-sm btn-outline-info" data-coreui-toggle="modal" data-coreui-target="#requirements">
+              <i class="fas fa-list"></i>
+              Requirements
+            </button>
           </div>
         	<div class="col-2 text-end">
             @can('is-recruiter')
-        		<button type="button" class="btn btn-sm btn-outline-info" data-coreui-toggle="modal" data-coreui-target="#edit">
+        		<button type="button" class="btn btn-sm btn-ghost-info" data-coreui-toggle="modal" data-coreui-target="#edit">
         			<i class="fas fa-trash"></i>
 		        	Edit
 		        </button>
-		        <button type="button" class="btn btn-sm btn-outline-danger" data-coreui-toggle="modal" data-coreui-target="#delete">
+		        <button type="button" class="btn btn-sm btn-ghost-danger" data-coreui-toggle="modal" data-coreui-target="#delete">
 		        	<i class="fas fa-trash"></i>
 		        	Delete
 		        </button>
@@ -222,14 +222,27 @@
             </a>
           @endcan
         @endif
+
+
         <ul class="list-group">
           @if($requirements)
             @foreach($requirements as $requirement)
             @can('is-recruiter')
-              <a href="{{ route('requirements.edit', $requirement->id) }}" class="btn btn-outline-info btn-sm">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <a href="{{ route('requirements.edit', $requirement->id) }}" class="btn btn-ghost-info btn-sm">
                 Edit
                 <i class="fas fa-pen"></i>
               </a>
+
+              <form method="POST" action="{{ route('requirements.destroy', $requirement->id) }}">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-ghost-danger btn-sm btn-block">
+                  <i class="fas fa-trash"></i>
+                  Remove
+                </button>
+              </form>
+            </div>
             @endcan
             <hr>
             @if($requirement->requirement_1)

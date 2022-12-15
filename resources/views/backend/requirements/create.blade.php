@@ -12,9 +12,11 @@
           @csrf
           <!-- Ensure Job poster can only see their own jobs in the dropdown -->
           <div class="mb-3">
-            <label for="single-select" class="form-label">
-              Ensure to select the correct Job Listing that you want to add requirements for
-            </label>
+            <div for="single-select" class="alert alert-danger" role="alert">
+              <a href="#" class="alert-link">
+                Ensure to select the correct Job Listing that you want to add requirements for
+              </a>
+            </div>
             <select class="form-multi-select @error('listing_id') invalid @enderror" name="listing_id" id="single-select" data-coreui-multiple="false">
               @if( ! $listings == null)
                 @foreach($listings as $listing)
@@ -71,7 +73,7 @@
           </div>
                  
           <button type="submit" class="btn btn-success float-end">
-            Create
+            Add Requirement
           </button>
         </form>
     </div>

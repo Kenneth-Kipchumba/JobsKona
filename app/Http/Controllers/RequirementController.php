@@ -129,6 +129,11 @@ class RequirementController extends Controller
      */
     public function destroy(Requirement $requirement)
     {
-        //
+        if ($requirement->delete())
+        {
+            return redirect()->back()->with('success', 'Job requirement deleted successfully');
+        }
+
+        return redirect()->back()->with('error', 'Something went wrong. Try again');
     }
 }
