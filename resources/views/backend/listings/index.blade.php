@@ -153,7 +153,7 @@
           </div>
 
           <button type="submit" class="btn btn-primary float-end">
-            Submit
+            Post
           </button>
         </form>
       </div>

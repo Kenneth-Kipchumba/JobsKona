@@ -54,6 +54,9 @@
 
   @include('backend.partials.header')
 
+  <!-- Including Sweet Alert 2 -->
+  @include('sweetalert::alert')
+
 <div class="body flex-grow-1 px-3">
   <div class="container-lg">
     @yield('content')

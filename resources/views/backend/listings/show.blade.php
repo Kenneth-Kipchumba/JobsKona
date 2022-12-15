@@ -215,30 +215,54 @@
         <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        @if(count($requirements) == 0)
+          @can('is-recruiter')
+            <a href="{{ route('requirements.create') }}" class="btn btn-outline-success btn-sm">
+              Add Them ?
+            </a>
+          @endcan
+        @endif
         <ul class="list-group">
           @if($requirements)
             @foreach($requirements as $requirement)
+            @can('is-recruiter')
+              <a href="{{ route('requirements.edit', $requirement->id) }}" class="btn btn-outline-info btn-sm">
+                Edit
+                <i class="fas fa-pen"></i>
+              </a>
+            @endcan
+            <hr>
+            @if($requirement->requirement_1)
               <li class="list-group-item">
                   {{ $requirement->requirement_1 }}
               </li>
+            @endif
+            @if($requirement->requirement_2)
               <li class="list-group-item">
                   {{ $requirement->requirement_2 }}
               </li>
+            @endif
+            @if($requirement->requirement_3)
               <li class="list-group-item">
                   {{ $requirement->requirement_3 }}
               </li>
+            @endif
+            @if($requirement->requirement_4)
               <li class="list-group-item">
                   {{ $requirement->requirement_4 }}
               </li>
+            @endif
+            @if($requirement->requirement_5)
               <li class="list-group-item">
                   {{ $requirement->requirement_5 }}
               </li>
+            @endif
             @endforeach
           @endif
         </ul>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Close</button>
+        
       </div>
     </div>
   </div>

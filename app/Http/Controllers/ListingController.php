@@ -8,6 +8,8 @@ use App\Http\Requests\StoreListingRequest;
 use App\Http\Requests\UpdateListingRequest;
 use App\Models\Listing;
 use App\Models\Requirement;
+use RealRashid\SweetAlert\Facades\Alert;
+//Use Alert;
 
 class ListingController extends Controller
 {
@@ -57,7 +59,10 @@ class ListingController extends Controller
         
         if (Listing::create($data))
         {
-            return redirect()->route('requirements.index')->with('success', 'Job Listed Successfully. You can optionally add requirements to this job');
+            return redirect()->route('requirements.index');
+            //->with('success', 'Job Listed Successfully. You can optionally add requirements to this job')
+
+            Alert::success('SuccessAlert', 'Job Listed Successfully. You can optionally add requirements to this job');
         }
 
         return redirect('listings')->with('error', 'Something went wrong. Try again');

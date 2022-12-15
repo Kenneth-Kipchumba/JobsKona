@@ -21,6 +21,7 @@ class RequirementController extends Controller
          */
         $user_id = auth()->id();
         $data['listings'] = Listing::where('user_id', $user_id)
+                                    ->orderBy('id', 'desc')
                                     ->get();
         //dd($data['listings']);
 
@@ -34,7 +35,11 @@ class RequirementController extends Controller
      */
     public function create()
     {
-        //
+        $user_id = auth()->id();
+        $data['listings'] = Listing::where('user_id', $user_id)
+                                    ->get();
+
+        return view('backend.requirements.create', $data);
     }
 
     /**
@@ -82,7 +87,12 @@ class RequirementController extends Controller
      */
     public function edit(Requirement $requirement)
     {
-        //
+        $user_id = auth()->id();
+        $data['listings'] = Listing::where('user_id', $user_id)
+                                    ->get();
+        $data['requirement'] = $requirement;
+
+        return view('backend.requirements.edit', $data);
     }
 
     /**
@@ -94,7 +104,21 @@ class RequirementController extends Controller
      */
     public function update(UpdateRequirementRequest $request, Requirement $requirement)
     {
-        //
+        $requirements = [
+            'requirement_1' => $request->input('requirement_1'),
+            'requirement_2' => $request->input('requirement_2'),
+            'requirement_3' => $request->input('requirement_3'),
+            'requirement_4' => $request->input('requirement_4'),
+            'requirement_5' => $request->input('requirement_5'),
+        ];
+
+        //dd($data);
+        if ($requirement->update($requirements))
+        {
+            return redirect()->back()->with('success', 'Job Requirements updated Successfully.');
+        }
+
+        return redirect()->back()->with('error', 'Something went wrong. Try again');
     }
 
     /**
