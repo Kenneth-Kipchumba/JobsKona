@@ -78,21 +78,35 @@
           </div>
           <div class="col">
             <ul class="list-group">
-              <li class="list-group-item">Company :</li>
               <li class="list-group-item">
-                <?php
-                $csvtags = explode(',', $listing->tags);
-                ?>
-                <ul>
-                  @foreach($csvtags as $tags)
-                  <li>
-                    <a href="{{ url('listings') }}/?tag={{$tags}}">
-                      {{ $tags }}
-                    </a>
-                  </li>
-                  @endforeach
-                </ul>
+                LT : Ksh.{{ $listing->lt }} per day
               </li>
+              <li class="list-group-item">
+                Wage : Ksh.{{ $listing->wage }} per successful task
+              </li>
+              <!-- Only Recruiter and Admin Should see this -->
+              <li class="list-group-item">
+                Project Cost : 
+                <mark>
+                  Ksh.{{ ($listing->wage + $listing->lt) }} per successful task per Agent
+                </mark>
+              </li>
+              <!-- End Only Recruiter and Admin Should see this -->
+              <!-- Ensure to check properly if its equal or greater than 1 -->
+              <?php
+                $csvtags = explode(',', $listing->tags);
+              ?>
+                <li class="list-group-item">
+                  <ul>
+                    @foreach($csvtags as $tags)
+                    <li>
+                      <a href="{{ url('listings') }}/?tag={{$tags}}">
+                        {{ $tags }}
+                      </a>
+                    </li>
+                    @endforeach
+                  </ul>
+                </li>
             </ul>
           </div>
         </div>

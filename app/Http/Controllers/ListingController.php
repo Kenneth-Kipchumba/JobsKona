@@ -8,7 +8,9 @@ use App\Http\Requests\StoreListingRequest;
 use App\Http\Requests\UpdateListingRequest;
 use App\Models\Listing;
 use App\Models\Requirement;
+use Carbon\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Str;
 //Use Alert;
 
 class ListingController extends Controller
@@ -51,10 +53,15 @@ class ListingController extends Controller
         $data = [
             'user_id' => auth()->user()->id,
             'title' => $request->input('title'),
-            'tags' => $request->input('tags'),
+            'tags' => $request->input('tags.*'),
             'description' => $request->input('description'),
             'slots' => $request->input('slots'),
+            'lt' => $request->input('lt'),
+            'wage' => $request->input('wage'),
+            'start_date' => Carbon::parse($request->date('start_date')),
+            'end_date' => Carbon::parse($request->date('end_date')),
         ];
+        //dd($data);
 
         
         if (Listing::create($data))
@@ -109,6 +116,10 @@ class ListingController extends Controller
             'tags' => $request->input('tags'),
             'description' => $request->input('description'),
             'slots' => $request->input('slots'),
+            'lt' => $request->input('lt'),
+            'wage' => $request->input('wage'),
+            'start_date' => Carbon::parse($request->date('start_date')),
+            'end_date' => Carbon::parse($request->date('end_date')),
         ];
 
 

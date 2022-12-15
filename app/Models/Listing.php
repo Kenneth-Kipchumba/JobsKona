@@ -20,6 +20,10 @@ class Listing extends Model
         'tags',
         'description',
         'slots',
+        'lt',
+        'wage',
+        'start_date',
+        'end_date'
     ];
 
     public function scopeFilter($query, array $filters)

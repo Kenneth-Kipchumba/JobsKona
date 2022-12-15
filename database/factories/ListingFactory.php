@@ -21,7 +21,9 @@ class ListingFactory extends Factory
             'title' => 'Call Center Agent',
             'tags'  => 'Call Center,QC,Supervisor',
             'description' => 'CATI - Computer Aided Telphonic Interviews',
-            'slots' => 10
+            'slots' => 10,
+            'lt' => 500,
+            'wage' => 100
         ];
     }
 }

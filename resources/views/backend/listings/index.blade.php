@@ -46,27 +46,22 @@
         </p>
       </div>
       <div class="card-body">
+        <span class="badge bg-success">
+          {{ $listing->slots }} Slots Remaining
+        </span>
         <div class="row">
           <div class="col">
-            <span class="badge bg-secondary">
-              {{ $listing->slots }} Slots
-            </span>
+            <small>
+              <?= Str::of($listing->description)->words(10, '...') ?>
+            </small>
           </div>
           <div class="col">
-            <img src="" alt="Company Logo" class="ml-0">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <p class="text-sm">{{ $listing->description }}</p>
-          </div>
-          <div class="col">
+            <?php
+            $csvtags = explode(',', $listing->tags);
+            ?>
+            @if(count($csvtags) > 1)
             <ul class="list-group">
-              <li class="list-group-item">Company :</li>
               <li class="list-group-item">
-                <?php
-                $csvtags = explode(',', $listing->tags);
-                ?>
                 <ul>
                   @foreach($csvtags as $tags)
                   <li>
@@ -78,12 +73,17 @@
                 </ul>
               </li>
             </ul>
+            @endif
           </div>
         </div>
       </div>
-      <div class="card-footer">
-        <button>Apply Now</button>
-      </div>
+      @can('is-agent')
+        <div class="card-footer">
+          <a href="{{ route('listings.show', $listing->id) }}" class="btn">
+            Apply Now
+          </a>
+        </div>
+      @endcan
     </div>
   </div>
   @endforeach
@@ -115,22 +115,6 @@
           </div>
 
           <div class="mb-3">
-            <label for="tags" class="form-label">
-              Tag
-            </label>
-
-            <select class="form-multi-select" id="ms1" multiple data-coreui-search="true" name="tags[]">
-              <option value="Call Center" >Call Center</option>
-              <option value="Field">Field</option>
-              <option value="QC">QC</option>
-              <option value="Supervisor">Supervisor</option>
-            </select>
-
-            <div id="tags" class="form-text">
-              ...
-            </div>
-          </div>
-          <div class="mb-3">
             <label for="description" class="form-label">
               Job Description
             </label>
@@ -143,12 +127,72 @@
           </div>
 
           <div class="mb-3">
-            <label for="slots" class="form-label">
-              Slots
-            </label>
-            <input type="number" class="form-control" name="slots" id="slots" aria-describedby="slots" value="{{ old('slots') }}">
-            <div id="slots" class="form-text">
-              Number of slots
+            <div class="row">
+              <div class="col">
+                <label for="tags" class="form-label">
+                  Tag
+                </label>
+
+                <select class="form-multi-select" id="ms1" multiple data-coreui-search="true" name="tags[]">
+                  <option value="Call Center" >Call Center</option>
+                  <option value="Field">Field</option>
+                  <option value="QC">QC</option>
+                  <option value="Supervisor">Supervisor</option>
+                </select>
+
+                <div id="tags" class="form-text">
+                  ...
+                </div>
+              </div>
+              <div class="col">
+                <label for="lt" class="form-label">
+                 LT
+                </label>
+                <input type="number" class="form-control" name="lt" id="lt" aria-describedby="lt" value="{{ old('lt') }}">
+                <div id="lt" class="form-text">
+                  Local Transport
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="row">
+              <div class="col">
+                <label for="slots" class="form-label">
+                  Slots
+                </label>
+                <input type="number" class="form-control" name="slots" id="slots" aria-describedby="slots" value="{{ old('slots') }}">
+                <div id="slots" class="form-text">
+                  Number of slots
+                </div>
+              </div>
+              <div class="col">
+                <label for="wage" class="form-label">
+                 Wage
+                </label>
+                <input type="number" class="form-control" name="wage" id="wage" aria-describedby="wage" value="{{ old('wage') }}">
+                <div id="wage" class="form-text">
+                  Wage per task
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="row">
+              <div class="col">
+                <label for="start_date" class="form-label">
+                  Start Date
+                </label>
+                <input type="date" id="start_date" name="start_date" class="form-control">
+              </div>
+              <div class="col">
+                <label for="end_date" class="form-label">
+                  End Date
+                </label>
+                <input type="date" id="end_date" name="end_date" class="form-control">
+              </div>
             </div>
           </div>
 
