@@ -29,7 +29,7 @@
 </div>
 
 
-<div class="card mb-4">
+    <div class="card mb-4">
       <div class="card-header">
         <div class="row">
         	<div class="col-8">
@@ -40,6 +40,7 @@
 		            <?= date('D - d/m/Y H:i', strtotime($listing->created_at)) ?>
 		          </span>
 		        </p>
+            
         	</div>
           <div class="col-2">
             <button title="Click to see job requirements" type="button" class="btn btn-sm btn-outline-info" data-coreui-toggle="modal" data-coreui-target="#requirements">
@@ -59,6 +60,20 @@
 		        </button>
             @endcan
         	</div>
+          <p>
+            This Job is expected to begin on 
+            <span class="badge bg-primary">
+              <?= 
+                  date('D - d/m/Y H:i', strtotime($listing->start_date)) 
+              ?> 
+            </span>
+              and to end on
+            <span class="badge bg-primary">
+              <?= 
+                  date('D - d/m/Y H:i', strtotime($listing->end_date)) 
+              ?> 
+            </span>.
+          </p>
         </div>
       </div>
       <div class="card-body">
@@ -69,7 +84,7 @@
             </span>
           </div>
           <div class="col">
-            <img src="" alt="Company Logo" class="ml-0">
+            
           </div>
         </div>
         <div class="row">
@@ -111,10 +126,43 @@
           </div>
         </div>
       </div>
+      @can('is-agent')
       <div class="card-footer">
         <button>Apply Now</button>
       </div>
+      @endcan
     </div>
+
+@can('is-recruiter')
+<div class="card">
+  <div class="card-header">
+    Applicants
+  </div>
+  <div class="card-body">
+    
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach($applications as $application)
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        @endforeach
+      </tbody>
+    </table>
+  </div>
+</div>
+@endcan
 
 <!--Edit Modal -->
 <div class="modal fade" id="edit" data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -130,6 +178,7 @@
         <form method="POST" action="{{ route('listings.update', $listing->id) }}" multiple>
           @csrf
           @method('PATCH')
+
           <div class="mb-3">
             <label for="title" class="form-label">
               Job Title
@@ -140,22 +189,6 @@
             </div>
           </div>
 
-          <div class="mb-3">
-            <label for="tags" class="form-label">
-              Tag
-            </label>
-
-            <select class="form-multi-select" id="ms1" multiple data-coreui-search="true" name="tags[]">
-              <option value="Call Center" >Call Center</option>
-              <option value="Field">Field</option>
-              <option value="QC">QC</option>
-              <option value="Supervisor">Supervisor</option>
-            </select>
-
-            <div id="tags" class="form-text">
-              ...
-            </div>
-          </div>
           <div class="mb-3">
             <label for="description" class="form-label">
               Job Description
@@ -169,12 +202,76 @@
           </div>
 
           <div class="mb-3">
-            <label for="slots" class="form-label">
-              Slots
-            </label>
-            <input type="number" class="form-control" name="slots" id="slots" aria-describedby="slots" value="{{ $listing->slots }}">
-            <div id="slots" class="form-text">
-              Number of slots
+            <div class="row">
+              <div class="col">
+                <label for="tags" class="form-label">
+                  Tags
+                </label><hr>
+
+                <!-- <select class="form-multi-select" id="ms1" multiple data-coreui-search="true" name="tags[]">
+                  <option value="Call Center" >Call Center</option>
+                  <option value="Field">Field</option>
+                  <option value="QC">QC</option>
+                  <option value="Supervisor">Supervisor</option>
+                </select> -->
+                Call Center: <input type="checkbox" name="tags[]" value="Call Center"><br>
+                Field:       <input type="checkbox" name="tags[]" value="Field"><br>
+                QC:          <input type="checkbox" name="tags[]" value="QC"><br>
+                Supervisor:  <input type="checkbox" name="tags[]" value="Supervisor"><br>
+
+                <div id="tags" class="form-text">
+                  ...
+                </div>
+              </div>
+              <div class="col">
+                <label for="lt" class="form-label">
+                 LT
+                </label>
+                <input type="number" step="0.01" class="form-control" name="lt" id="lt" aria-describedby="lt" value="{{ $listing->lt }}">
+                <div id="lt" class="form-text">
+                  Local Transport
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="row">
+              <div class="col">
+                <label for="slots" class="form-label">
+                  Slots
+                </label>
+                <input type="number" class="form-control" name="slots" id="slots" aria-describedby="slots" value="{{ $listing->slots }}">
+                <div id="slots" class="form-text">
+                  Number of slots
+                </div>
+              </div>
+              <div class="col">
+                <label for="wage" class="form-label">
+                 Wage
+                </label>
+                <input type="number" step="0.01" class="form-control" name="wage" id="wage" aria-describedby="wage" value="{{ $listing->wage }}">
+                <div id="wage" class="form-text">
+                  Wage per task
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="row">
+              <div class="col">
+                <label for="start_date" class="form-label">
+                  Start Date
+                </label>
+                <input type="date" id="start_date" name="start_date" class="form-control" value="{{ $listing->start_date }}">
+              </div>
+              <div class="col">
+                <label for="end_date" class="form-label">
+                  End Date
+                </label>
+                <input type="date" id="end_date" name="end_date" class="form-control" value="{{ $listing->end_date }}">
+              </div>
             </div>
           </div>
 

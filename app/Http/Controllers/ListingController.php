@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Gate;
 
 use App\Http\Requests\StoreListingRequest;
 use App\Http\Requests\UpdateListingRequest;
+use App\Models\Application;
 use App\Models\Listing;
 use App\Models\Requirement;
 use Carbon\Carbon;
@@ -84,6 +85,8 @@ class ListingController extends Controller
     { 
         $data['listing'] = $listing;
         $data['requirements'] = Requirement::where('listing_id', $listing->id)->get();
+
+        $data['applications'] = Application::latest()->paginate(10);
         //dd($data['requirements']);
 
         return view('backend.listings.show', $data);
