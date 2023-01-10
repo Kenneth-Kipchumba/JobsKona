@@ -130,15 +130,19 @@
             <div class="row">
               <div class="col">
                 <label for="tags" class="form-label">
-                  Tag
-                </label>
+                  Tags
+                </label><hr>
 
-                <select class="form-multi-select" id="ms1" multiple data-coreui-search="true" name="tags[]">
+                <!-- <select class="form-multi-select" id="ms1" multiple data-coreui-search="true" name="tags[]">
                   <option value="Call Center" >Call Center</option>
                   <option value="Field">Field</option>
                   <option value="QC">QC</option>
                   <option value="Supervisor">Supervisor</option>
-                </select>
+                </select> -->
+                Call Center: <input type="checkbox" name="tags[]" value="Call Center"><br>
+                Field:       <input type="checkbox" name="tags[]" value="Field"><br>
+                QC:          <input type="checkbox" name="tags[]" value="QC"><br>
+                Supervisor:  <input type="checkbox" name="tags[]" value="Supervisor"><br>
 
                 <div id="tags" class="form-text">
                   ...
@@ -148,7 +152,7 @@
                 <label for="lt" class="form-label">
                  LT
                 </label>
-                <input type="number" class="form-control" name="lt" id="lt" aria-describedby="lt" value="{{ old('lt') }}">
+                <input type="number" step="0.01" class="form-control" name="lt" id="lt" aria-describedby="lt" value="{{ old('lt') }}">
                 <div id="lt" class="form-text">
                   Local Transport
                 </div>
@@ -171,7 +175,7 @@
                 <label for="wage" class="form-label">
                  Wage
                 </label>
-                <input type="number" class="form-control" name="wage" id="wage" aria-describedby="wage" value="{{ old('wage') }}">
+                <input type="number" step="0.01" class="form-control" name="wage" id="wage" aria-describedby="wage" value="{{ old('wage') }}">
                 <div id="wage" class="form-text">
                   Wage per task
                 </div>

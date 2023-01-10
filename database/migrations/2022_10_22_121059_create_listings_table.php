@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('tags')->nullable();
             $table->text('description');
             $table->unsignedSmallInteger('slots');
-            $table->string('lt')->nullable();
-            $table->string('wage');
+            $table->float('lt')->nullable();
+            $table->float('wage');
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->timestamps();

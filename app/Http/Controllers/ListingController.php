@@ -47,17 +47,17 @@ class ListingController extends Controller
      */
     public function store(StoreListingRequest $request)
     {
-        //$validated = $request->validated();
+        $validated = $request->validated();
+        $tags = $request->collect('tags')->implode(',');
         
-        //dd($validated);
         $data = [
             'user_id' => auth()->user()->id,
             'title' => $request->input('title'),
-            'tags' => $request->input('tags.*'),
+            'tags' => $tags,
             'description' => $request->input('description'),
             'slots' => $request->input('slots'),
-            'lt' => $request->input('lt'),
-            'wage' => $request->input('wage'),
+            'lt' => $request->float('lt'),
+            'wage' => $request->float('wage'),
             'start_date' => Carbon::parse($request->date('start_date')),
             'end_date' => Carbon::parse($request->date('end_date')),
         ];
@@ -66,10 +66,9 @@ class ListingController extends Controller
         
         if (Listing::create($data))
         {
-            return redirect()->route('requirements.index');
-            //->with('success', 'Job Listed Successfully. You can optionally add requirements to this job')
+            return redirect()->route('requirements.index')->with('success', 'Job Listed Successfully. You can optionally add requirements to this job');
 
-            Alert::success('SuccessAlert', 'Job Listed Successfully. You can optionally add requirements to this job');
+            //Alert::success('SuccessAlert', 'Job Listed Successfully. You can optionally add requirements to this job');
         }
 
         return redirect('listings')->with('error', 'Something went wrong. Try again');
@@ -110,14 +109,18 @@ class ListingController extends Controller
      */
     public function update(UpdateListingRequest $request, Listing $listing)
     {
+        $validated = $request->validated();
+        
+        $tags = $request->collect('tags')->implode(',');
+        
         $data = [
-            'user_id' => 1,
+            'user_id' => auth()->user()->id,
             'title' => $request->input('title'),
-            'tags' => $request->input('tags'),
+            'tags' => $tags,
             'description' => $request->input('description'),
             'slots' => $request->input('slots'),
-            'lt' => $request->input('lt'),
-            'wage' => $request->input('wage'),
+            'lt' => $request->float('lt'),
+            'wage' => $request->float('wage'),
             'start_date' => Carbon::parse($request->date('start_date')),
             'end_date' => Carbon::parse($request->date('end_date')),
         ];
